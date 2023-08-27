@@ -14,6 +14,7 @@ const initialState = {
 const INCREMENT = "INCREMENT";
 const DECREMENT = "DECREMENT";
 const RESET = 'RESET'
+const INCREMENT_BY_VALUE = "INCREMENT_BY_VALUE"
 //  ACTIONS
 
 const incrementAction = () => {
@@ -30,6 +31,14 @@ const resetAction = () => {
   return {
     type: RESET
   }
+}
+
+
+const incrementByValueAction = (value)=>{
+     return{
+       type : INCREMENT_BY_VALUE,
+       payload :value
+     }
 }
 
 //  reducers 
@@ -52,6 +61,12 @@ const counterReducers = (state = initialState, action) => {
         count: 0
       };
 
+    case INCREMENT_BY_VALUE:
+       return {
+        ...state,
+        count : state.count + action.payload
+       }
+
     default:
       state;
   }
@@ -71,3 +86,6 @@ store.dispatch(decrementAction())
 store.dispatch(resetAction())
 store.dispatch(incrementAction())
 store.dispatch(decrementAction())
+store.dispatch(incrementAction())
+store.dispatch(incrementAction())
+store.dispatch(incrementByValueAction(10))
